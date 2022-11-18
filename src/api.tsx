@@ -3,9 +3,10 @@
 export default async function getApi(){
   return await (await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_API_KEY}`)).json()
     .then(result=>{
-      return (result.results)
+      return result
     })
 }
+// getApi().then((q)=>setMovies(q.results))
 //Search movie from api
 export async function searchApi(movie:string){
   return await (await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_API_KEY}&query=${movie}`)).json()
