@@ -16,15 +16,15 @@ type T={
     vote_count:number;
     media_type:string;
 }
-function Home(movies:any) {
-  console.log(movies)
+function Home(movie:T) {
+  console.log(movie)
   return (
     <div>
-      {movies?.map((movie:any)=>
+      {/* {movies?.map((movie:any)=>
         <>
         <h2>{movie.name}</h2>
         </>
-      )}
+      )} */}
     
     </div>
   );

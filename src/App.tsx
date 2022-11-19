@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import getApi from './api';
 import Home from './pages/Home/Home';
+import MovieDetail from './pages/MovieDetail/MovieDetail';
 import Search from './pages/Search/Search';
 
 function App() {
@@ -25,15 +26,14 @@ function App() {
   const [movies,setMovies] =useState<T>()
   useEffect(()=>{
     getApi().then((q)=>setMovies(q.results))
-    
   },[])
-  // console.log(movies)
-  // console.log(getApi())
+  console.log(movies)
   return (
     <>
     <Routes>
-      <Route path='/'element={<Home movies={movies}/>} />
+      {/* <Route path='/'element={<Home movie={movies}/>} /> */}
       <Route path='/movie'element={<Search/>} />
+      <Route path='/movie/:id'element={<MovieDetail />} />
     </Routes>
     </>
   );

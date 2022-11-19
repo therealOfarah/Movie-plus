@@ -32,29 +32,17 @@ function Search() {
       <div>
       {movie?.map((m:any)=>
         <>
-        <img src={`${`https://image.tmdb.org/t/p/w500/${m.backdrop_path}`}`} alt="" />
-        <Link to=''><h1>{m.original_title}</h1></Link>
-        <h3>{m.release_date}</h3>
-        {m.poster_path} 
-        <small>{m.first_air_date} - {m.release_date}</small>
+        <div className="card" style={{width: "18rem"}}>
+          <img src={`${`https://image.tmdb.org/t/p/w500/${m.backdrop_path}`}`}  className="card-img-top" alt="..."/>
+          <div className="card-body">
+            <h5 className="card-title">{m.original_title}</h5>
+            <p className="card-text">{m.release_date}</p>
+            <Link to={`/movie/${m.id}`} state={m}><button className="btn btn-primary">Continue</button></Link>
+          </div>
+        </div>
         </>
       )}
       </div>
-      {/* adult:boolean;
-    backdrop_path:string;
-    first_air_date:string;
-    genre_ids:[number];
-    id:number;
-    name:string;
-    origin_country:string;
-    original_language:string;
-    original_name:string;
-    overview:string;
-    popularity:number;
-    poster_path:string;
-    vote_average:number;
-    vote_count:number;
-    media_type:string; */}
     </>
   );
 }
