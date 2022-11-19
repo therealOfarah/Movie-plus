@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { searchApi } from '../../api';
+import { searchApi} from '../../api';
 function Search() {
   const [movie,setMovie]= useState<any>()
   const [formData, setFormData] = useState({query: ''})
@@ -29,7 +29,7 @@ function Search() {
       <div>
       {movie?.map((m:any)=>
         <>
-        <div className="card" style={{width: "18rem"}}>
+        <div className="card" style={{width: "18rem"}} key={m.id}>
           <img src={`${`https://image.tmdb.org/t/p/w500/${m.backdrop_path}`}`}  className="card-img-top" alt="..."/>
           <div className="card-body">
             <h5 className="card-title">{m.original_title}</h5>

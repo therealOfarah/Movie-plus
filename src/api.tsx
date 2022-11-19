@@ -9,7 +9,7 @@ export default async function getApi(){
 // getApi().then((q)=>setMovies(q.results))
 //Search movie from api
 export async function searchApi(movie:string){
-  return await (await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_API_URL}&query=${movie}`)).json()
+  return await (await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_API_URL}&query=${movie}`)).json()
     .then(result=>{
       return (result.results)
     })
