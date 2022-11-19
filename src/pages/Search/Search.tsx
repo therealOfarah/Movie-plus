@@ -8,13 +8,10 @@ function Search() {
   const handleChange = (evt: { target: { name: any; value: any; }; }) => {
     setFormData({ ...formData,[evt.target.name]: evt.target.value})
   }
-
   const handleSubmit = (evt: { preventDefault: () => void; }) => {
     evt.preventDefault()
-    // props.handleWorkoutSearch(formData)
     searchApi(formData.query).then((q)=>setMovie(q))
   }
-  console.log(movie)
   return (
     <>
       <form onSubmit={handleSubmit}>
