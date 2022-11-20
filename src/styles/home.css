@@ -10,3 +10,12 @@
   margin: 10px;
   background-color: peachpuff;
 }
+body{
+  background: linear-gradient(360deg, rgba(131,58,180,1) 0%, rgba(186,51,51,1) 37%, rgba(252,176,69,1) 100%);
+}
+nav{
+  background:CornFlowerBlue;
+}
+.background{
+  background: linear-gradient(360deg, rgba(131,58,180,1) 0%, rgba(186,51,51,1) 37%, rgba(252,176,69,1) 100%);
+}

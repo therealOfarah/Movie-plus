@@ -14,11 +14,12 @@ function Search() {
   }
   useEffect(()=>{
     searchApi(formData.query).then(q=>setMovie(q))
-    setMovie([state])
+    // setMovie([state])
   }, [formData.query, state])
   console.log(state)
   return (
     <>
+    <div className="background">
       <form onSubmit={handleSubmit}>
         <input 
           name="query" 
@@ -29,7 +30,7 @@ function Search() {
           className="form-control"
           placeholder="What should we watch?"
         />
-        <button className="btn btn-light"type="submit">Search</button>
+        {/* <button className="btn btn-light"type="submit">Search</button> */}
       </form>
       <div id="card-container">
       {movie?.map((m:any)=>
@@ -45,6 +46,7 @@ function Search() {
         </>
       )}
       </div>
+    </div>
     </>
   );
 }
