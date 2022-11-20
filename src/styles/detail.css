@@ -1,0 +1,11 @@
+body{
+  background:lightblue
+}
+#image{
+  display: block;
+  margin-top: 5vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
+}

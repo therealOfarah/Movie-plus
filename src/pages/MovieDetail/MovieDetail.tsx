@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { recommendationsApi} from '../../api';
+import '../../styles/detail.css'
 function MovieDetail() {
   type T={
     adult:boolean;
@@ -30,12 +31,12 @@ function MovieDetail() {
   return (
     <>
     <div >
-      <img style={{width:'200px',objectFit:'fill'}} src={`${`https://image.tmdb.org/t/p/w500/${data.backdrop_path}`}`}  className="card-img-top" alt="..."/>
+      <img id="image" src={`${`https://image.tmdb.org/t/p/w500/${data.backdrop_path}`}`}  className="card-img-top" alt="..."/>
       <h3 style={{textAlign:'center', color:'red'}}>{data.original_title}</h3>
       <p style={{textAlign:'center', color:'black',fontSize:'30px'}}>{data.overview}
       </p>
     <h1 style={{backgroundColor:'red'}}>{recs?.original_name}</h1>
-      <button type="button" className="btn btn-primary">{data.genre_ids}</button>
+      {/* <button type="button" className="btn btn-primary">{data.genre_ids}</button> */}
     </div>
     </>
 
