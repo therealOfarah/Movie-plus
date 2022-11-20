@@ -1,7 +1,7 @@
 # Movie+
 This app allows users to browse movies and tv shows. 
 
-visit the app at 
+visit the app at https://omar-movie-plus.netlify.app/
 ![alt text]('./../src/images/home.png)
 ![alt text]('./../src/images/movie.png)
 
