@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import getApi from './api';
+import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
 import Search from './pages/Search/Search';
@@ -29,6 +30,7 @@ function App() {
   },[])
   return (
     <>
+    <NavBar />
     <Routes>
       <Route path='/'element={<Home state={movies}/>} />
       <Route path='/movie'element={<Search/>} />
