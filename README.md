@@ -5,6 +5,7 @@ visit the app at
 ![alt text]('./../src/images/home.png)
 ![alt text]('./../src/images/movie.png)
 
+
 # Next Steps:
 
 
@@ -15,4 +16,6 @@ visit the app at
 - [ ] Add user ability
 - [ ] Add option to save movie/show
 - [ ] allow users to check other users account
-  
+
+# Special Thanks to TMDB 
+This site was built using [TMDB](https://www.themoviedb.org/?language=en-US).
