@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { recommendationsApi} from '../../api';
+import { showRecommendationsApi} from '../../api';
 import '../../styles/detail.css'
-function MovieDetail() {
+function ShowDetail() {
   type T={
     adult:boolean;
     backdrop_path:string;
@@ -24,7 +24,7 @@ function MovieDetail() {
   const location  = useLocation()
   const data = location.state
   useEffect(() => {
-    recommendationsApi(data.id).then((q)=>setRecs((q)))
+    showRecommendationsApi(data.id).then((q)=>setRecs((q)))
   }, [data.id])
   console.log(recs)
   return (
@@ -34,9 +34,8 @@ function MovieDetail() {
       <h3 style={{textAlign:'center', color:'red'}}>{data.original_title}</h3>
       <p style={{textAlign:'center', color:'black',fontSize:'30px'}}>{data.overview}
       </p>
-      {/* <h1 style={{backgroundColor:'red'}}>{recs?.original_name}</h1> */}
+      <h2 style={{textAlign:"center", marginTop:"5vh"}}>Other Show's like {data.original_title}</h2>
     </div>
-    <h2 style={{textAlign:"center", marginTop:"5vh"}}>Other Movie's like {data.original_title}</h2>
     <div id="card-container">
       {recs?.map((m:any)=>
         <>
@@ -56,4 +55,4 @@ function MovieDetail() {
   );
 }
 
-export default MovieDetail;
+export default ShowDetail;

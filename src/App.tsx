@@ -4,8 +4,9 @@ import getApi from './api';
 import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
-import Search from './pages/Search/Search';
-
+import Movie from './pages/Movie/Movie';
+import Show from './pages/Show/Show';
+import ShowDetail from './pages/ShowDetail/ShowDetail';
 function App() {
   type T={
     adult:boolean;
@@ -33,8 +34,10 @@ function App() {
     <NavBar />
     <Routes>
       <Route path='/'element={<Home state={movies}/>} />
-      <Route path='/movie'element={<Search/>} />
-      <Route path='/movie/:id'element={<MovieDetail />} />
+      <Route path='/movie'element={<Movie/>} />
+      <Route path='/movie/:id'element={<MovieDetail />} />      
+      <Route path='/show'element={<Show />} />
+      <Route path='/show/:id'element={<ShowDetail />} />
     </Routes>
     </>
   );

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link,useLocation } from 'react-router-dom';
-import { searchApi} from '../../api';
+import { searchShowApi} from '../../api';
 import '../../styles/home.css'
-function Search() {
+function Show() {
   const [movie,setMovie]= useState<any>()
   const [formData, setFormData] = useState({query: ''})
   const { state } = useLocation();
@@ -13,7 +13,7 @@ function Search() {
     evt.preventDefault()
   }
   useEffect(()=>{
-    searchApi(formData.query).then(q=>setMovie(q))
+    searchShowApi(formData.query).then(q=>setMovie(q))
     // setMovie([state])
   }, [formData.query, state])
   console.log(movie)
@@ -30,7 +30,6 @@ function Search() {
           className="form-control"
           placeholder="What should we watch?"
         />
-        {/* <button className="btn btn-light"type="submit">Search</button> */}
       </form>
       <div id="card-container">
       {movie?.map((m:any)=>
@@ -40,7 +39,7 @@ function Search() {
           <div className="card-body">
             <h5 className="card-title">{ m.original_name === undefined ? m.title:m.name}</h5>
             <p className="card-text">{m.release_date === undefined ? m.first_air_date:m.release_date}</p>
-            <Link to={`/movie/${m.id}`} state={m}><button className="btn btn-primary">Continue</button></Link>
+            <Link to={`/show/${m.id}`} state={m}><button className="btn btn-primary">Continue</button></Link>
           </div>
         </div>
         </>
@@ -51,4 +50,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default Show;
