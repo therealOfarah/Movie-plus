@@ -1,7 +1,14 @@
 import React from "react";
 import logo1 from "../../images/logo1.jpg";
 import { Link } from "react-router-dom";
-function NavBar() {
+type Props={
+  handleLogout:()=>void;
+  user:any;
+}
+function NavBar(props:Props) {
+  const profile = props.user
+  console.log(profile)
+  const logout= props.handleLogout
   return (
     <nav className="navbar navbar-expand-lg " >
       <div className="container-fluid">
@@ -20,6 +27,8 @@ function NavBar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        {
+      profile === (undefined || null) ?
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/">Home</Link>
@@ -30,7 +39,26 @@ function NavBar() {
             <li className="nav-item">
               <Link className="nav-link" to="/show">Shows</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link active" aria-current="page" to="/login">Login</Link>
+            </li>
           </ul>
+          :
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/movie">Movies</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/show">Shows</Link>
+            </li>
+            <li className="nav-item">
+              <button className="nav-button" onClick={logout}>logout</button>
+            </li>
+          </ul>
+}
         </div>
       </div>
     </nav>

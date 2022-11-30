@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; 
+  background-size: cover;
+  background-position: center;
+}
+
+#signinform {
+  width: 300px;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+  background: #fff;
+  padding: 20px;
+  margin: 4% auto 0;
+  text-align: center;
+}
+
+#signinform h1 {
+  color: #b56576;
+  margin-bottom: 30px;
+}
+
+#name, #email, #password, #confirm{
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border: 1px solid #999;
+  outline: none;
+}
+
+#signinbtn {
+  background-color: #b56576;
+  color: #fff;
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 15px;
+  margin: 10px 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#signinbtn:disabled {
+  background-color: gray;
+}
