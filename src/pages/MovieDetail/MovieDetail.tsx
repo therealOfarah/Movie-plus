@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { recommendationsApi} from '../../api';
 import '../../styles/detail.css'
 function MovieDetail() {
@@ -23,7 +23,6 @@ function MovieDetail() {
   const [recs,setRecs]=useState<T | any>()
   const location  = useLocation()
   const data = location.state
-  console.log(data.title)
   useEffect(() => {
     recommendationsApi(data.id).then((q)=>setRecs((q)))
   }, [data.id])
@@ -37,6 +36,20 @@ function MovieDetail() {
       </p>
     <h1 style={{backgroundColor:'red'}}>{recs?.original_name}</h1>
       {/* <button type="button" className="btn btn-primary">{data.genre_ids}</button> */}
+    </div>
+    <div id="card-container">
+      {recs?.map((m:any)=>
+        <>
+        <div className="card" style={{width: "18rem"}} key={m.id} >
+          <img src={`${`https://image.tmdb.org/t/p/w500/${m.backdrop_path === (undefined || null) ? m.poster_path : m.backdrop_path}`}`}  className="card-img-top" alt="..."/>
+          <div className="card-body">
+            <h5 className="card-title">{ m.original_name === undefined ? m.title:m.name}</h5>
+            <p className="card-text">{m.release_date === undefined ? m.first_air_date:m.release_date}</p>
+            <Link to={`/movie/${m.id}`} state={m}><button className="btn btn-primary">Continue</button></Link>
+          </div>
+        </div>
+        </>
+        )}
     </div>
     </>
 
