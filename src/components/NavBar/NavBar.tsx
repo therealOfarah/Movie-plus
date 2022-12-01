@@ -1,11 +1,14 @@
 import React from "react";
 import logo1 from "../../images/logo1.jpg";
 import { Link } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 type Props={
   handleLogout:()=>void;
   user:any;
 }
-function NavBar(props:Props) {
+function NavBarTop(props:Props) {
   const profile = props.user
   const logout= props.handleLogout
   return (
@@ -67,4 +70,4 @@ function NavBar(props:Props) {
   );
 }
 
-export default NavBar;
+export default NavBarTop;

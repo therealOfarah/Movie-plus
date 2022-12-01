@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route,useNavigate } from 'react-router-dom'
 import getApi from './api';
-import NavBar from './components/NavBar/NavBar';
+import NavBarTop from './components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
 import Movie from './pages/Movie/Movie';
@@ -61,7 +61,7 @@ function App() {
   }
   return (
     <>
-    <NavBar user={user} handleLogout={handleLogout} />
+    <NavBarTop user={user} handleLogout={handleLogout} />
     <Routes>
       <Route path="/login"element={<Login handleSignupOrLogin={handleSignupOrLogin} />}></Route>
       <Route path="/signup"element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}></Route>
