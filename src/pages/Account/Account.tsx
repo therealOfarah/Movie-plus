@@ -8,19 +8,19 @@ type Props={
 function Account(props:Props) {
   const id = props.user.profile
   const[profile,setProfile] = useState({})
-  const[movie,setMovie] = useState([])
   useEffect(() => {
     const fetchProfile = async () => {
       const profileData = await profileService.getProfileDetails(id)
       setProfile(profileData)
-      console.log(profileData)
-      // setMovie(props.savedMovie)
     }
     fetchProfile()
   }, [id])
+  // console.log("*******",profile?.movies)
   return (
     <div>
-      
+      {/* {profile?.movies?.map((movie:any)=>
+        
+        )} */}
     </div>
   );
 }

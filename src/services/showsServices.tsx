@@ -1,6 +1,6 @@
 import * as tokenService from '../services/tokenServices'
 
-const BASE_URL = `http://localhost:3001/api/movies`
+const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}api/movies`
 type T={
   adult:boolean;
   backdrop_path:string;

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/home.css'
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 function Home(movie:any) {
   let arr = []
   for (const property in movie) {

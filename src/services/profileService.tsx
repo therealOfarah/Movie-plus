@@ -1,6 +1,6 @@
 import * as tokenService from './tokenServices'
 
-const BASE_URL = `http://localhost:3001/api/profiles`
+const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}api/profiles`
 
 
 export async function getProfileDetails(profileId: string) {
