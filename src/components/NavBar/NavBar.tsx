@@ -7,7 +7,6 @@ type Props={
 }
 function NavBar(props:Props) {
   const profile = props.user
-  console.log(profile)
   const logout= props.handleLogout
   return (
     <nav className="navbar navbar-expand-lg " >
@@ -53,6 +52,9 @@ function NavBar(props:Props) {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/show">Shows</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/account">Account</Link>
             </li>
             <li className="nav-item">
               <button className="nav-button" onClick={logout}>logout</button>

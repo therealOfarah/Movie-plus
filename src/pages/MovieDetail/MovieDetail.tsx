@@ -2,7 +2,11 @@ import React, { useState,useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { recommendationsApi} from '../../api';
 import '../../styles/detail.css'
-function MovieDetail() {
+type Props ={
+  handleSaveMovie: (data: any) => void
+}
+function MovieDetail(props:Props) {
+  const save = props.handleSaveMovie
   type T={
     adult:boolean;
     backdrop_path:string;
@@ -26,7 +30,6 @@ function MovieDetail() {
   useEffect(() => {
     recommendationsApi(data.id).then((q)=>setRecs((q)))
   }, [data.id])
-  console.log(recs)
   return (
     <>
     <div >
@@ -34,7 +37,7 @@ function MovieDetail() {
       <h3 style={{textAlign:'center', color:'red'}}>{data.original_title}</h3>
       <p style={{textAlign:'center', color:'black',fontSize:'30px'}}>{data.overview}
       </p>
-      {/* <h1 style={{backgroundColor:'red'}}>{recs?.original_name}</h1> */}
+      <button onClick={()=>props.handleSaveMovie(data)}>Save Me</button>
     </div>
     <h2 style={{textAlign:"center", marginTop:"5vh"}}>Other Movie's like {data.original_title}</h2>
     <div id="card-container">
@@ -46,6 +49,7 @@ function MovieDetail() {
             <h5 className="card-title">{ m.original_name === undefined ? m.title:m.name}</h5>
             <p className="card-text">{m.release_date === undefined ? m.first_air_date:m.release_date}</p>
             <Link to={`/movie/${m.id}`} state={m}><button className="btn btn-primary">Continue</button></Link>
+        {/* <button >Save Movie</button> */}
           </div>
         </div>
         </>

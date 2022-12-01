@@ -8,6 +8,7 @@ import Movie from './pages/Movie/Movie';
 import Show from './pages/Show/Show';
 import ShowDetail from './pages/ShowDetail/ShowDetail';
 import * as authService from './services/authServices'
+import * as movieService from './services/moviesServices'
 import Login from './Login/Login';
 import Signup from './pages/SignUp/Signup';
 import Account from './pages/Account/Account';
@@ -30,8 +31,16 @@ function App() {
     vote_count:number;
     media_type:string;
   }
+  type D ={
+    original_title:string;
+    overview:string;
+    poster_path:string;
+    release_date:string;
+    
+  }
   const [user, setUser] = useState(authService.getUser());
   const [movies,setMovies] =useState<T>()
+  const [savedMovie,setSavedMovie] = useState<D|any>([{}])
   useEffect(()=>{
     getApi().then((q)=>setMovies(q.results))
   },[])
@@ -45,6 +54,11 @@ function App() {
   const handleSignupOrLogin = () => {
     setUser(authService.getUser());
   };
+  const handleSaveMovie = async (data:any)=>{
+    const save = await movieService.saveMovie(data)
+    console.log(save,"*****")
+    setSavedMovie([save])
+  }
   return (
     <>
     <NavBar user={user} handleLogout={handleLogout} />
@@ -52,9 +66,9 @@ function App() {
       <Route path="/login"element={<Login handleSignupOrLogin={handleSignupOrLogin} />}></Route>
       <Route path="/signup"element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}></Route>
       <Route path='/'element={<Home state={movies}/>} />      
-      <Route path='/account'element={<Account />} />
+      <Route  path='/account'element={<Account user={user} savedMovie={savedMovie} />} />
       <Route path='/movie'element={<Movie/>} />
-      <Route path='/movie/:id'element={<MovieDetail />} />      
+      <Route path='/movie/:id'element={<MovieDetail handleSaveMovie={handleSaveMovie} />} />      
       <Route path='/show'element={<Show />} />
       <Route path='/show/:id'element={<ShowDetail />} />
     </Routes>
