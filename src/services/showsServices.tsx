@@ -1,6 +1,6 @@
 import * as tokenService from '../services/tokenServices'
 
-const BASE_URL = `http://localhost:3001/api/shows`
+const BASE_URL = `${process.env.RREACT_APP_BACK_END_SERVER_URL}/api/shows`
 type T={
   adult:boolean;
   backdrop_path:string;
@@ -26,6 +26,5 @@ export async function saveShow(show:T){
     body: JSON.stringify(show)
   })
   const data =  await res.json()
-  console.log(data)
   return data
 }

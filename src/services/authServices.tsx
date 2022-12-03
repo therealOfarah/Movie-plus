@@ -1,9 +1,8 @@
 import * as tokenService from './tokenServices'
 // import { addPhoto as addProfilePhoto } from './profileService'
-const BASE_URL = `http://localhost:3001/api/auth`
+const BASE_URL = `${process.env.RREACT_APP_BACK_END_SERVER_URL}/api/auth`
 
 async function signup(user: { name: string; email: string; password: string; passwordConf: string }) {
-  console.log(user)
   try {
     const res = await fetch(`${BASE_URL}/signup`, {
       method: 'POST',
@@ -26,7 +25,6 @@ function getUser() {
 }
 
 function logout(){
-  // console.log("omarrr")
   tokenService.removeToken()
 }
 

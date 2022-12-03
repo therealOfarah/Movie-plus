@@ -1,6 +1,6 @@
 import * as tokenService from '../services/tokenServices'
 
-const BASE_URL = `http://localhost:3001/api/movies`
+const BASE_URL = `${process.env.RREACT_APP_BACK_END_SERVER_URL}/api/movies`
 
 type T={
   adult:boolean;
@@ -20,22 +20,12 @@ type T={
   media_type:string;
 }
 export async function saveMovie(movie:T){
-  const res = await fetch(`http://localhost:3001/api/movies`, {
+  const res = await fetch(`${BASE_URL}`, {
     method: 'POST', 
     headers: {'Authorization': `Bearer ${tokenService.getToken()}`,
     'Content-Type': 'application/json'}, 
     body: JSON.stringify(movie)
   })
   const data =  await res.json()
-  console.log(data)
-  return data
-}
-export async function deleteMovie(movie:T){
-  const res = await fetch(`http://localhost:3001/api/movies/delete`, {
-    method: 'DELETE', 
-    headers: {'Authorization': `Bearer ${tokenService.getToken()}`}, 
-  })
-  const data =  await res.json()
-  console.log(data)
   return data
 }

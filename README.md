@@ -8,14 +8,11 @@ visit the app at https://omar-movie-plus.netlify.app/
 
 # Next Steps:
 
-
-
 - [x] Add movies
 - [x] Add shows
 - [x] Make app mobile friendly
-- [ ] Add user ability
-- [ ] Add option to save movie/show
-- [ ] allow users to check other users account
+- [x] Add user ability
+- [x] Add option to save and delete movie/show
 
 # Special Thanks to TMDB 
 This site was built using [TMDB](https://www.themoviedb.org/?language=en-US).

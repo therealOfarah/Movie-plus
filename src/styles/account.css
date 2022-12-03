@@ -1,0 +1,12 @@
+#card-container{
+  padding: 0 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 275px;
+  margin: 10px;
+  background-color: cadetblue;
+}

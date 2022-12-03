@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect,useState } from 'react';
-import { Link } from 'react-router-dom';
 import * as profileService from '../../services/profileService'
+import '../../styles/account.css'
 type Props={
   savedMovie:any;
   user:any;
@@ -29,11 +29,11 @@ function Account(props:Props) {
     await profileService.deleteShow(id)
     setShows(shows.filter((show:any)=>show._id !== id))
   }
-  console.log("*******",profile)
   return (
     <div>
-      <h3>{profile?.name}</h3>
+      <h3 style={{textAlign:"center"}}>{profile?.name}</h3>
       <ol>
+        <div id="card-container">
       {movie.map((m:any)=>
         <div className="card" style={{width: "18rem"}} key={m?.id}>
           <img src={`${`https://image.tmdb.org/t/p/w500/${ m?.poster_path }`}`}  className="card-img-top" alt="..."/>
@@ -44,6 +44,8 @@ function Account(props:Props) {
           </div>
         </div>
         )}
+        </div>
+        <div id="card-container">
         {shows.map((m:any)=>
         <div className="card" style={{width: "18rem"}} key={m?.id}>
           <img src={`${`https://image.tmdb.org/t/p/w500/${ m?.poster_path }`}`}  className="card-img-top" alt="..."/>
@@ -54,6 +56,7 @@ function Account(props:Props) {
           </div>
         </div>
         )}
+        </div>
       </ol>
     </div>
   );
