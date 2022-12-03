@@ -30,3 +30,12 @@ export async function saveMovie(movie:T){
   console.log(data)
   return data
 }
+export async function deleteMovie(movie:T){
+  const res = await fetch(`http://localhost:3001/api/movies/delete`, {
+    method: 'DELETE', 
+    headers: {'Authorization': `Bearer ${tokenService.getToken()}`}, 
+  })
+  const data =  await res.json()
+  console.log(data)
+  return data
+}

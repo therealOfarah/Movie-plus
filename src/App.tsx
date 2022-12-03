@@ -42,7 +42,7 @@ function App() {
   const [user, setUser] = useState(authService.getUser());
   const [movies,setMovies] =useState<T>()
   const [savedMovie,setSavedMovie] = useState<D|any>([{}])  
-  const [savedShow,setSavedShow] = useState<D|any>([{}])
+  const [savedShow,setSavedShow] = useState<D|any>([])
 
   useEffect(()=>{
     getApi().then((q)=>setMovies(q.results))
@@ -64,8 +64,8 @@ function App() {
   }
   const handleSaveShow = async (data:any)=>{
     const save = await showService.saveShow(data)
-    console.log(save,"*****")
-    setSavedShow([save])
+    setSavedShow(savedShow.push(save))
+    console.log(savedShow,"*****")
   }
   return (
     <>

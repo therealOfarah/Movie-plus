@@ -30,15 +30,16 @@ export async function genreApi(){
     })
 }
 //get recomendations
-export async function recommendationsApi(a:number){
-  return await (await fetch(`https://api.themoviedb.org/3/movie/${a}/recommendations?api_key=${process.env.REACT_APP_SECRET_NAME}&language=en-US&page=1`)).json()
+export async function movieRecommendationsApi(a:number){
+  return (await fetch(`https://api.themoviedb.org/3/movie/${a}/recommendations?api_key=${process.env.REACT_APP_SECRET_NAME}&language=en-US`)).json()
     .then(result=>{
+      console.log(result.results)
       return(result.results)
     })
 }
 //get Show recomendations
 export async function showRecommendationsApi(a:number){
-  return await (await fetch(`https://api.themoviedb.org/3/tv/${a}/recommendations?api_key=${process.env.REACT_APP_SECRET_NAME}&language=en-US&page=1`)).json()
+  return (await fetch(`https://api.themoviedb.org/3/tv/${a}/recommendations?api_key=${process.env.REACT_APP_SECRET_NAME}&language=en-US`)).json()
     .then(result=>{
       return(result.results)
     })

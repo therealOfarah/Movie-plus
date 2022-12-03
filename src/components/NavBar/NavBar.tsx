@@ -30,7 +30,7 @@ function NavBarTop(props:Props) {
       profile === (undefined || null) ?
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+              <Link className="nav-link " aria-current="page" to="/">Home</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/movie">Movies</Link>
@@ -39,13 +39,13 @@ function NavBarTop(props:Props) {
               <Link className="nav-link" to="/show">Shows</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/login">Login</Link>
+              <Link className="nav-link " aria-current="page" to="/login">Login</Link>
             </li>
           </ul>
           :
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+              <Link className="nav-link " aria-current="page" to="/">Home</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/movie">Movies</Link>
@@ -57,7 +57,7 @@ function NavBarTop(props:Props) {
               <Link className="nav-link" to="/account">Account</Link>
             </li>
             <li className="nav-item">
-              <button className="nav-button" onClick={logout}>logout</button>
+              <p className="nav-link" onClick={logout}>Logout</p>
             </li>
           </ul>
 }

@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { recommendationsApi} from '../../api';
+import { movieRecommendationsApi} from '../../api';
 import '../../styles/detail.css'
 type Props ={
   handleSaveMovie: (data: any) => void
@@ -28,7 +28,7 @@ function MovieDetail(props:Props) {
   const location  = useLocation()
   const data = location.state
   useEffect(() => {
-    recommendationsApi(data.id).then((q)=>setRecs((q)))
+    movieRecommendationsApi(data.id).then((q)=>setRecs((q)))
   }, [data.id])
   return (
     <>
@@ -40,11 +40,12 @@ function MovieDetail(props:Props) {
       {props.user?.profile === undefined ?
       ''
       :
-      <button onClick={()=>props.handleSaveMovie(data)}>Save Me</button>
-    
+      <button style={{display:"flex",justifyContent:"center", marginTop:"5vh"}} className="btn btn-outline-primary" onClick={()=>props.handleSaveMovie(data)}>Save Me</button>
       }
     </div>
-    <h2 style={{textAlign:"center", marginTop:"5vh"}}>Other Movie's like {data.original_title}</h2>
+    {recs?.length === 0 || undefined ? '':
+    <>
+    <h2 style={{textAlign:"center", marginTop:"5vh"}}>You might also like</h2>
     <div id="card-container">
       {recs?.map((m:any)=>
         <>
@@ -54,12 +55,13 @@ function MovieDetail(props:Props) {
             <h5 className="card-title">{ m.original_name === undefined ? m.title:m.name}</h5>
             <p className="card-text">{m.release_date === undefined ? m.first_air_date:m.release_date}</p>
             <Link to={`/movie/${m.id}`} state={m}><button className="btn btn-primary">Continue</button></Link>
-        {/* <button >Save Movie</button> */}
           </div>
         </div>
         </>
         )}
     </div>
+    </>
+    }
     </>
 
   );

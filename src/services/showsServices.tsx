@@ -1,6 +1,6 @@
 import * as tokenService from '../services/tokenServices'
 
-const BASE_URL = `http://localhost:3001/api/movies`
+const BASE_URL = `http://localhost:3001/api/shows`
 type T={
   adult:boolean;
   backdrop_path:string;

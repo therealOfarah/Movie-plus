@@ -44,8 +44,9 @@ function ShowDetail(  props:Props ) {
       <button onClick={()=>props.handleSaveShow(data)}>Save Me</button>
     
       }
-      <h2 style={{textAlign:"center", marginTop:"5vh"}}>Other Show's like {data.original_title}</h2>
-    </div>
+      {recs?.length === 0 || undefined ? '':
+    <>
+    <h2 style={{textAlign:"center", marginTop:"5vh"}}>You might also like</h2>
     <div id="card-container">
       {recs?.map((m:any)=>
         <>
@@ -54,11 +55,14 @@ function ShowDetail(  props:Props ) {
           <div className="card-body">
             <h5 className="card-title">{ m.original_name === undefined ? m.title:m.name}</h5>
             <p className="card-text">{m.release_date === undefined ? m.first_air_date:m.release_date}</p>
-            <Link to={`/movie/${m.id}`} state={m}><button className="btn btn-primary">Continue</button></Link>
+            <Link to={`/show/${m.id}`} state={m}><button className="btn btn-primary">Continue</button></Link>
           </div>
         </div>
         </>
         )}
+    </div>
+    </>
+    }
     </div>
     </>
 
