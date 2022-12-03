@@ -2,7 +2,11 @@ import React, { useState,useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { showRecommendationsApi} from '../../api';
 import '../../styles/detail.css'
-function ShowDetail() {
+type Props ={
+  handleSaveShow: (data: any) => void
+  user:any
+}
+function ShowDetail(  props:Props ) {
   type T={
     adult:boolean;
     backdrop_path:string;
@@ -34,6 +38,12 @@ function ShowDetail() {
       <h3 style={{textAlign:'center', color:'red'}}>{data.original_title}</h3>
       <p style={{textAlign:'center', color:'black',fontSize:'30px'}}>{data.overview}
       </p>
+      {props.user?.profile === undefined ?
+      ''
+      :
+      <button onClick={()=>props.handleSaveShow(data)}>Save Me</button>
+    
+      }
       <h2 style={{textAlign:"center", marginTop:"5vh"}}>Other Show's like {data.original_title}</h2>
     </div>
     <div id="card-container">

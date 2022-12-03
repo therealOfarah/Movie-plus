@@ -4,9 +4,9 @@ import { recommendationsApi} from '../../api';
 import '../../styles/detail.css'
 type Props ={
   handleSaveMovie: (data: any) => void
+  user:any
 }
 function MovieDetail(props:Props) {
-  const save = props.handleSaveMovie
   type T={
     adult:boolean;
     backdrop_path:string;
@@ -37,7 +37,12 @@ function MovieDetail(props:Props) {
       <h3 style={{textAlign:'center', color:'red'}}>{data.original_title}</h3>
       <p style={{textAlign:'center', color:'black',fontSize:'30px'}}>{data.overview}
       </p>
+      {props.user?.profile === undefined ?
+      ''
+      :
       <button onClick={()=>props.handleSaveMovie(data)}>Save Me</button>
+    
+      }
     </div>
     <h2 style={{textAlign:"center", marginTop:"5vh"}}>Other Movie's like {data.original_title}</h2>
     <div id="card-container">

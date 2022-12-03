@@ -1,6 +1,6 @@
 import * as tokenService from '../services/tokenServices'
 
-const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}api/movies`
+const BASE_URL = `http://localhost:3001/api/movies`
 
 type T={
   adult:boolean;
@@ -20,7 +20,7 @@ type T={
   media_type:string;
 }
 export async function saveMovie(movie:T){
-  const res = await fetch(`${BASE_URL}`, {
+  const res = await fetch(`http://localhost:3001/api/movies`, {
     method: 'POST', 
     headers: {'Authorization': `Bearer ${tokenService.getToken()}`,
     'Content-Type': 'application/json'}, 
