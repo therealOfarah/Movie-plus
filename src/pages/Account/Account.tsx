@@ -6,12 +6,11 @@ type Props={
   savedMovie:any;
   user:any;
 }
-
 function Account(props:Props) {
   const id = props.user.profile
   const[profile,setProfile] = useState<any>()
-  const[movie,setMovie] = useState<any>([])
-  const[shows,setShows] = useState<any>([])
+  const[movie,setMovie] = useState([])
+  const[shows,setShows] = useState([])
   useEffect(() => {
     const fetchProfile = async () => {
       const profileData = await profileService.getProfileDetails(id)

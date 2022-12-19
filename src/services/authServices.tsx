@@ -1,73 +1,78 @@
-import * as tokenService from './tokenServices'
+import * as tokenService from "./tokenServices";
 // import { addPhoto as addProfilePhoto } from './profileService'
-const BASE_URL = `${process.env.RREACT_APP_BACK_END_SERVER_URL}/api/auth`
+const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/auth`;
 
-async function signup(user: { name: string; email: string; password: string; passwordConf: string }) {
+async function signup(user: {
+  name: string;
+  email: string;
+  password: string;
+  passwordConf: string;
+}) {
   try {
     const res = await fetch(`${BASE_URL}/signup`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
-    })
-    const json = await res.json()
+    });
+    const json = await res.json();
     if (json.err) {
-      throw new Error(json.err)
+      throw new Error(json.err);
     } else if (json.token) {
-      tokenService.setToken(json.token)
+      tokenService.setToken(json.token);
     }
   } catch (err) {
-    throw err
+    throw err;
   }
 }
 
 function getUser() {
-  return tokenService.getUserFromToken()
+  return tokenService.getUserFromToken();
 }
 
-function logout(){
-  tokenService.removeToken()
+function logout() {
+  tokenService.removeToken();
 }
 
 async function login(credentials: { email: string; pw: string }) {
   try {
     const res = await fetch(`${BASE_URL}/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),
-    })
-    const json = await res.json()
+    });
+    const json = await res.json();
     if (json.token) {
-      tokenService.setToken(json.token)
+      tokenService.setToken(json.token);
     }
     if (json.err) {
-      throw new Error(json.err)
+      throw new Error(json.err);
     }
   } catch (err) {
-    throw err
+    throw err;
   }
 }
 
 async function changePassword(credentials: any) {
   try {
     const res = await fetch(`${BASE_URL}/changePassword`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${tokenService.getToken()}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${tokenService.getToken()}`,
       },
       body: JSON.stringify(credentials),
-    })
-    const json = await res.json()
+    });
+    const json = await res.json();
     if (json.token) {
-      tokenService.removeToken()
-      tokenService.setToken(json.token)
+      tokenService.removeToken();
+      tokenService.setToken(json.token);
     }
     if (json.err) {
-      throw new Error(json.err)
+      throw new Error(json.err);
     }
   } catch (err) {
-    throw err
+    throw err;
   }
 }
 
-export { signup, getUser, logout, login, changePassword }
+export { signup, getUser, logout, login, changePassword };

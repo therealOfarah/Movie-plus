@@ -30,11 +30,13 @@ function ShowDetail(  props:Props ) {
   useEffect(() => {
     showRecommendationsApi(data.id).then((q)=>setRecs((q)))
   }, [data.id])
-  console.log(recs)
   return (
     <>
     <div >
-      <img id="image" src={`${`https://image.tmdb.org/t/p/w500/${data.backdrop_path}`}`}  className="card-img-top" alt="..."/>
+      <div className='sage' style={{ backgroundImage: `url(${`https://image.tmdb.org/t/p/w500/${data.poster_path}`})`,backgroundSize: 'cover', overflow: 'hidden'}}>
+        {/* <h3></h3> */}
+      <img id="image" style={{}}src={`${`https://image.tmdb.org/t/p/w500/${data.backdrop_path}`}`}  className="card-img-top" alt="..."/>
+      </div>
       <h3 style={{textAlign:'center', color:'red'}}>{data.original_title}</h3>
       <p style={{textAlign:'center', color:'black',fontSize:'30px'}}>{data.overview}
       </p>
@@ -42,8 +44,8 @@ function ShowDetail(  props:Props ) {
       ''
       :
       <button onClick={()=>props.handleSaveShow(data)}>Save Me</button>
-    
-      }
+      
+    }
       {recs?.length === 0 || undefined ? '':
     <>
     <h2 style={{textAlign:"center", marginTop:"5vh"}}>You might also like</h2>
@@ -51,7 +53,7 @@ function ShowDetail(  props:Props ) {
       {recs?.map((m:any)=>
         <>
         <div className="card" style={{width: "18rem"}} key={m.id} >
-          <img src={`${`https://image.tmdb.org/t/p/w500/${m.backdrop_path === (undefined || null) ? m.poster_path : m.backdrop_path}`}`}  className="card-img-top" alt="..."/>
+          <img src={`${`https://image.tmdb.org/t/p/w440_and_h660_face/${m.backdrop_path === (undefined || null) ? m.poster_path : m.backdrop_path}`}`}  className="card-img-top" alt="..."/>
           <div className="card-body">
             <h5 className="card-title">{ m.original_name === undefined ? m.title:m.name}</h5>
             <p className="card-text">{m.release_date === undefined ? m.first_air_date:m.release_date}</p>

@@ -49,7 +49,6 @@ function App() {
   },[])
   const navigate = useNavigate()
   const handleLogout = () => {
-    console.log("logged out");
     authService.logout();
     setUser(null);
     navigate("/");
@@ -59,17 +58,16 @@ function App() {
   };
   const handleSaveMovie = async (data:any)=>{
     const save = await movieService.saveMovie(data)
-    console.log(save,"*****")
     setSavedMovie([save])
   }
   const handleSaveShow = async (data:any)=>{
     const save = await showService.saveShow(data)
     setSavedShow(savedShow.push(save))
-    console.log(savedShow,"*****")
   }
+
   return (
     <>
-    <NavBarTop user={user} handleLogout={handleLogout} />
+    <NavBarTop  user={user} handleLogout={handleLogout} />
     <Routes>
       <Route path="/login"element={<Login handleSignupOrLogin={handleSignupOrLogin} />}></Route>
       <Route path="/signup"element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}></Route>
