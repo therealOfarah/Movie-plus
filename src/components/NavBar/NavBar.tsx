@@ -1,27 +1,27 @@
 import React from "react";
 import logo1 from "../../images/logo1.jpg";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 type Props={
   handleLogout:()=>void;
   user:any;
 }
-function NavBarTop(props:Props) {
+function NavBarhrefp(props:Props) {
   const profile = props.user
   const logout= props.handleLogout
   return (
     <nav className="navbar navbar-expand-lg " >
       <div className="container-fluid">
-      <Link className="navbar-brand"  to='/'>
+      <a className="navbar-brand"  href='/'>
           <img
             src={logo1}
             alt="Logo"
             width="30"
             height="24"
-            className="d-inline-block align-text-top"
+            className="d-inline-block align-text-hrefp"
           />
           Movie+
-      </Link>
-        <button
+      </a>
+      <button
           className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -30,34 +30,31 @@ function NavBarTop(props:Props) {
       profile === (undefined || null) ?
           <ul className="navbar-nav ms-3 mb-2 mb-lg-0" >
             <li className="nav-item" >
-              <Link className="nav-link " aria-current="page" to="/">Home</Link>
+              <a className="nav-link " aria-current="page" href="/">Home</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/movie">Movies</Link>
+              <a className="nav-link" href="/movie">Movies</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/show">Shows</Link>
+              <a className="nav-link" href="/show">Shows</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link " aria-current="page" to="/login">Login</Link>
+              <a className="nav-link " aria-current="page" href="/login">Login</a>
             </li>
           </ul>
           :
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auhref mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link " aria-current="page" to="/">Home</Link>
+              <a className="nav-link " aria-current="page" href="/">Home</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/movie">Movies</Link>
+              <a className="nav-link" href="/movie">Movies</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/show">Shows</Link>
+              <a className="nav-link" href="/show">Shows</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/random" >Random</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/account">Account</Link>
+              <a className="nav-link" href="/account">Account</a>
             </li>
             <li className="nav-item">
               <p className="nav-link" onClick={logout}>Logout</p>
@@ -70,4 +67,4 @@ function NavBarTop(props:Props) {
   );
 }
 
-export default NavBarTop;
+export default NavBarhrefp;

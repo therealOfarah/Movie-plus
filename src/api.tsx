@@ -43,3 +43,9 @@ export async function showRecommendationsApi(a:number){
     return(result.results)
   })
 }
+export async function getTrailer(a:number){
+  return (await fetch(`https://api.themoviedb.org/3/movie/${a}/videos?api_key=${process.env.REACT_APP_SECRET_NAME}&language=en-US`)).json()
+  .then(result=>{
+    return(result.results)
+  })
+}

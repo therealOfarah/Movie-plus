@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { movieRecommendationsApi} from '../../api';
+import { movieRecommendationsApi,getTrailer} from '../../api';
 import '../../styles/detail.css'
 type Props ={
   handleSaveMovie: (data: any) => void
@@ -25,11 +25,15 @@ function MovieDetail(props:Props) {
     media_type:string;
   }
   const [recs,setRecs]=useState<T | any>()
+  const [preview,setPreview] = useState<any>([])
   const location  = useLocation()
   const data = location.state
   useEffect(() => {
     movieRecommendationsApi(data.id).then((q)=>setRecs((q)))
+    getTrailer(data.id).then(q=> setPreview(q))
   }, [data.id])
+  let trailer = (preview[25])
+  console.log(trailer)
   return (
     <>
     <div >
@@ -40,9 +44,21 @@ function MovieDetail(props:Props) {
       <p style={{textAlign:'center', color:'black',fontSize:'30px'}}>{data.overview}
       </p>
       {props.user?.profile === undefined ?
-      ''
+      <button style={{display:"flex",justifyContent:"center", marginTop:"5vh"}} className="btn btn-outline-primary" onClick={()=>props.handleSaveMovie(data)}>Cast</button>
       :
+      
+      <>
+     <iframe
+      width="853"
+      height="480"
+      src={`https://www.youtube.com/embed/${trailer.key}`}
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      title="Embedded youtube"
+    />
       <button style={{display:"flex",justifyContent:"center", marginTop:"5vh"}} className="btn btn-outline-primary" onClick={()=>props.handleSaveMovie(data)}>Save Me</button>
+      </>
       }
     </div>
     {recs?.length === 0 || undefined ? '':
