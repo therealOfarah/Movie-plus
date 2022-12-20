@@ -32,8 +32,13 @@ function MovieDetail(props:Props) {
     movieRecommendationsApi(data.id).then((q)=>setRecs((q)))
     getTrailer(data.id).then(q=> setPreview(q))
   }, [data.id])
-  let trailer = (preview[25])
-  console.log(trailer)
+  let trailer: any[]= []
+  for (let i = 0; i <preview?.length; i++) {
+    if(preview[i].name === 'Official Trailer'){
+      trailer.push(preview[i])
+    }
+  }
+  const m = (trailer[0])
   return (
     <>
     <div >
@@ -44,20 +49,34 @@ function MovieDetail(props:Props) {
       <p style={{textAlign:'center', color:'black',fontSize:'30px'}}>{data.overview}
       </p>
       {props.user?.profile === undefined ?
-      <button style={{display:"flex",justifyContent:"center", marginTop:"5vh"}} className="btn btn-outline-primary" onClick={()=>props.handleSaveMovie(data)}>Cast</button>
+      <>
+      <h3 style={{textAlign:"center", marginTop:"5vh"}}>Trailer</h3>
+      <iframe
+      id="trailer"
+      width="853"
+      height="480"
+      src={`https://www.youtube.com/embed/${m?.key}`}
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      title="Embedded youtube"
+      />
+      </>
       :
       
       <>
-     <iframe
+      <h3 style={{textAlign:"center", marginTop:"5vh"}}>Trailer</h3>
+      <iframe
+      id="trailer"
       width="853"
       height="480"
-      src={`https://www.youtube.com/embed/${trailer.key}`}
+      src={`https://www.youtube.com/embed/${m?.key}`}
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
       title="Embedded youtube"
     />
-      <button style={{display:"flex",justifyContent:"center", marginTop:"5vh"}} className="btn btn-outline-primary" onClick={()=>props.handleSaveMovie(data)}>Save Me</button>
+      <button style={{display:"flex",justifyContent:"center", margin:"auto",marginTop:"5vh"}} className="btn btn-outline-primary" onClick={()=>props.handleSaveMovie(data)}>Save Me</button>
       </>
       }
     </div>

@@ -9,13 +9,7 @@ body{
   width: 50%;
   height: 50%;
 }
-/* #image{ 
-  position: relative; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-} */
+
 .sage { 
   position: relative; 
   display: flex;
@@ -32,4 +26,10 @@ body{
   bottom: 0px;
   left: 0px;
   background-color: rgba(0,0,0,0.35);
+}
+#trailer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
 }
