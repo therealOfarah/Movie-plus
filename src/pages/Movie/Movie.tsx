@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link,useLocation } from 'react-router-dom';
 import { searchApi} from '../../api';
 import '../../styles/home.css'
+import '../../styles/searchBar.css'
 function Movie() {
   const [movie,setMovie]= useState<any>()
   const [formData, setFormData] = useState({query: ''})
@@ -20,29 +21,17 @@ function Movie() {
   return (
     <>
     <div className="background">
-      <form onSubmit={handleSubmit}>
-        <input 
-          name="query" 
-          type="text"  
+      <form onSubmit={handleSubmit} className="search-container">
+      <input type="text" id="search-bar" name="query"   
           autoComplete="off"
           value={formData.query}
           onChange={handleChange}
           className="form-control"
-          placeholder="What should we watch?"
-        />
-        {/* <button className="btn btn-light"type="submit">Search</button> */}
+          placeholder="What should we watch?"/>
       </form>
       <div id="card-container">
       {movie?.map((m:any)=>
         <>
-        {/* <div className="card" style={{width: "18rem"}} key={m.id} >
-          <img src={`${`https://image.tmdb.org/t/p/w440_and_h660_face/${m.backdrop_path}`}`}  className="card-img-top" alt="..."/>
-          <div className="card-body">
-            <h5 className="card-title">{ m.original_name === undefined ? m.title:m.name}</h5>
-            <p className="card-text">{m.release_date === undefined ? m.first_air_date:m.release_date}</p>
-            <Link to={`/movie/${m.id}`} state={m}><button className="btn btn-primary">Continue</button></Link>
-          </div>
-        </div> */}
         <div className="movie-card">
         <Link to={`/movie/${m.id}`} state={m}>
           <img

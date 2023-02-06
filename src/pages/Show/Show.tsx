@@ -20,16 +20,13 @@ function Show() {
   return (
     <>
     <div className="background">
-      <form onSubmit={handleSubmit}>
-        <input 
-          name="query" 
-          type="text"  
+    <form onSubmit={handleSubmit} className="search-container">
+      <input type="text" id="search-bar" name="query"   
           autoComplete="off"
           value={formData.query}
           onChange={handleChange}
           className="form-control"
-          placeholder="What should we watch?"
-        />
+          placeholder="What should we watch?"/>
       </form>
       <div id="card-container">
       {movie?.map((m:any)=>
