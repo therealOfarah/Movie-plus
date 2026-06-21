@@ -1,47 +1,118 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #141414;
+  --red: #e50914;
+  --white: #ffffff;
+  --muted: #8c8c8c;
+  --field: #333;
+}
+
+html, body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif; 
+  font-family: 'Inter', sans-serif;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)),
+    radial-gradient(circle at 50% 0%, #2b0a0a 0%, #141414 70%);
   background-size: cover;
   background-position: center;
+  min-height: 100vh;
 }
 
 #signinform {
-  width: 300px;
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
-  background: #fff;
-  padding: 20px;
-  margin: 4% auto 0;
-  text-align: center;
+  width: 380px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  padding: 48px 44px 36px;
+  margin: 6% auto 0;
+  text-align: left;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
 #signinform h1 {
-  color: #b56576;
-  margin-bottom: 30px;
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--white);
+  margin-bottom: 28px;
+  letter-spacing: 0;
+  text-align: left;
 }
 
-#name, #email, #password, #confirm{
-  border-radius: 20px;
-  padding: 10px;
-  margin: 10px 0;
+#signinform .label {
+  color: var(--muted);
+  font-size: 0.8rem;
+  display: block;
+  margin-top: 10px;
+}
+
+#name, #email, #password, #confirm {
+  background: var(--field);
+  color: var(--white);
+  border-radius: 4px;
+  padding: 16px 16px 6px;
+  margin: 8px 0;
   width: 100%;
-  border: 1px solid #999;
+  height: 50px;
+  border: 1px solid transparent;
   outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+#name::placeholder, #email::placeholder, #password::placeholder, #confirm::placeholder {
+  color: var(--muted);
+}
+
+#name:focus, #email:focus, #password:focus, #confirm:focus {
+  background: #454545;
+  border-color: var(--white);
 }
 
 #signinbtn {
-  background-color: #b56576;
-  color: #fff;
+  background-color: var(--red);
+  color: var(--white);
   width: 100%;
-  padding: 10px;
-  border-radius: 20px;
-  font-size: 15px;
-  margin: 10px 0;
+  padding: 14px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 22px 0 14px;
   border: none;
   outline: none;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#signinbtn:hover:not(:disabled) {
+  background-color: #f40612;
 }
 
 #signinbtn:disabled {
-  background-color: gray;
+  background-color: #555;
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+#signinform hr {
+  border-color: rgba(255, 255, 255, 0.15);
+  margin: 18px 0;
+}
+
+#signinform p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+#signinform a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#signinform a:hover {
+  text-decoration: underline;
 }

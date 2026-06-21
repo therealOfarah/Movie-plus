@@ -1,66 +1,123 @@
-#card-container{
-  padding: 0 30px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #141414;
+  --bg-raised: #1c1c1c;
+  --red: #e50914;
+  --white: #ffffff;
+  --muted: #b3b3b3;
 }
 
-.card {
-  width: 275px;
-  margin: 10px;
-  background-color: cadetblue;
-}
-body{
-  background:wheat;
-}
-nav{
-  background:CornFlowerBlue;
-}
-#image{ 
-  position: relative; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-}
-.sage { 
-  position: relative; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
+html, body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
 }
 
-.sage::before {
-  content: "";
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  background-color: rgba(0,0,0,0.35);
+.background {
+  background: var(--bg);
+  min-height: 100vh;
+  padding-top: 24px;
 }
+
+/* ---- Poster grid, Netflix/Hulu row style ---- */
+#card-container {
+  padding: 24px 4vw 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px 14px;
+  justify-content: center;
+}
+
 .movie-card {
-  padding: 10px;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  background-color: var(--bg-raised);
+  border-radius: 4px;
+  overflow: visible;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 1;
 }
-.movie-description {
-  background: var(--color5);
-  border-radius: 0 0 0.5rem 0.5rem;
-}
-.movie-title {
-  color: var(--color3);
-  padding: 0.5rem;
-  font-size: 1rem;
-}
-.movie-vote {
-  background: var(--color2);
-  color: orange;
-  text-align: center;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-}
-.movie-img {
-  border-radius: 0.5rem 0.5rem 0 0;
+
+.movie-card > a {
+  display: block;
+  border-radius: 4px;
   overflow: hidden;
-  max-height: 100% !important;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+}
+
+.movie-img {
+  border-radius: 4px;
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.3s ease;
+}
+
+/* the description block becomes a hover-reveal info card,
+   the way Netflix expands a tile on hover */
+.movie-description {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: var(--bg-raised);
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  padding: 0.6rem 0.85rem 0.85rem !important;
+}
+
+.movie-title {
+  color: var(--white);
+  padding: 0 !important;
+  margin: 0 0 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.movie-description .card-text {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+.movie-card:hover {
+  transform: scale(1.18);
+  z-index: 5;
+}
+
+.movie-card:hover > a {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
+}
+
+.movie-card:hover .movie-img {
+  filter: brightness(0.9);
+}
+
+.movie-card:hover .movie-description {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (max-width: 700px) {
+  .movie-card:hover {
+    transform: scale(1.06);
+  }
+  .movie-img {
+    height: 220px;
+  }
 }

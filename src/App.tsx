@@ -40,7 +40,7 @@ function App() {
     
   }
   const [user, setUser] = useState(authService.getUser());
-  const [movies,setMovies] =useState<T>()
+  const [movies, setMovies] = useState<T[]>()
   const [savedMovie,setSavedMovie] = useState<D|any>([{}])  
   const [savedShow,setSavedShow] = useState<D|any>([])
 
@@ -71,7 +71,7 @@ function App() {
     <Routes>
       <Route path="/login"element={<Login handleSignupOrLogin={handleSignupOrLogin} />}></Route>
       <Route path="/signup"element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}></Route>
-      <Route path='/'element={<Home state={movies}/>} />      
+      <Route path='/' element={<Home data={movies} />} />      
       <Route  path='/account'element={<Account user={user} savedMovie={savedMovie} />} />
       <Route path='/movie'element={<Movie/>} />
       <Route path='/movie/:id'element={<MovieDetail user={user} handleSaveMovie={handleSaveMovie} />} />      
