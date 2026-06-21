@@ -20,7 +20,7 @@ function Movie() {
   console.log(movie)
   return (
     <>
-    <div className="background">
+    <div className="search-page">
       <form onSubmit={handleSubmit} className="search-container">
       <input type="text" id="search-bar" name="query"   
           autoComplete="off"

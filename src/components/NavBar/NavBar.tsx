@@ -1,67 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo1 from "../../images/logo1.jpg";
-// import { Link } from "react-router-dom";
-type Props={
-  handleLogout:()=>void;
-  user:any;
+import '../../styles/NavBar.css'
+
+type Props = {
+  handleLogout: () => void;
+  user: any;
 }
-function NavBarhrefp(props:Props) {
-  const profile = props.user
-  const logout= props.handleLogout
+
+function NavBarhrefp(props: Props) {
+  const profile = props.user;
+  const logout = props.handleLogout;
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <nav className="navbar navbar-expand-lg " >
-      <div className="container-fluid">
-      <a className="navbar-brand"  href='/'>
-          <img
-            src={logo1}
-            alt="Logo"
-            width="30"
-            height="24"
-            className="d-inline-block align-text-hrefp"
-          />
-          Movie+
-      </a>
-      <button
-          className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
+    <nav className={`mp-navbar ${scrolled ? "mp-navbar--solid" : ""}`}>
+      <div className="mp-navbar__inner">
+        <a className="mp-navbar__brand" href="/">
+          <img src={logo1} alt="Logo" className="mp-navbar__logo" />
+          <span>MOVIE+</span>
+        </a>
+
+        <button
+          className="mp-navbar__toggle"
+          type="button"
+          aria-label="Toggle navigation"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{flexDirection: "row-reverse",paddingTop:"6px"}}>
-        {
-      profile === (undefined || null) ?
-          <ul className="navbar-nav ms-3 mb-2 mb-lg-0">
-            <li className="nav-item" >
-              <a className="nav-link " aria-current="page" href="/">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/movie">Movies</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/show">Shows</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link " aria-current="page" href="/login">Login</a>
-            </li>
-          </ul>
-          :
-          <ul className="navbar-nav me-auhref mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className="nav-link " aria-current="page" href="/">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/movie">Movies</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/show">Shows</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/account">Account</a>
-            </li>
-            <li className="nav-item">
-              <p className="nav-link" onClick={logout}>Logout</p>
-            </li>
-          </ul>
-}
-        </div>
+
+        <ul className={`mp-navbar__links ${menuOpen ? "mp-navbar__links--open" : ""}`}>
+          <li><a href="/" onClick={() => setMenuOpen(false)}>Home</a></li>
+          <li><a href="/movie" onClick={() => setMenuOpen(false)}>Movies</a></li>
+          <li><a href="/show" onClick={() => setMenuOpen(false)}>Shows</a></li>
+          {profile == null ? (
+            <li><a href="/login" className="mp-navbar__cta" onClick={() => setMenuOpen(false)}>Sign In</a></li>
+          ) : (
+            <>
+              <li><a href="/account" onClick={() => setMenuOpen(false)}>My List</a></li>
+              <li>
+                <button className="mp-navbar__logout" onClick={() => { setMenuOpen(false); logout(); }}>
+                  Sign Out
+                </button>
+              </li>
+            </>
+          )}
+        </ul>
       </div>
     </nav>
   );

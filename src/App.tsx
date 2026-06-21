@@ -13,6 +13,7 @@ import * as showService from './services/showsServices'
 import Login from './Login/Login';
 import Signup from './pages/SignUp/Signup';
 import Account from './pages/Account/Account';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
   type T={
@@ -67,6 +68,7 @@ function App() {
 
   return (
     <>
+    <ScrollToTop />
     <NavBarTop  user={user} handleLogout={handleLogout} />
     <Routes>
       <Route path="/login"element={<Login handleSignupOrLogin={handleSignupOrLogin} />}></Route>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link,useLocation } from 'react-router-dom';
 import { searchShowApi} from '../../api';
 import '../../styles/home.css'
+import '../../styles/searchBar.css'
 function Show() {
   const [movie,setMovie]= useState<any>()
   const [formData, setFormData] = useState({query: ''})
@@ -19,7 +20,7 @@ function Show() {
   console.log(movie)
   return (
     <>
-    <div className="background">
+    <div className="search-page">
     <form onSubmit={handleSubmit} className="search-container">
       <input type="text" id="search-bar" name="query"   
           autoComplete="off"
